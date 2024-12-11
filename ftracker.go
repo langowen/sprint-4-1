@@ -73,7 +73,7 @@ const (
 	runningCaloriesMeanSpeedShift      = 1.79 // среднее количество сжигаемых калорий при беге.
 )
 
-// RunningSpentCalories возвращает количество потраченных колорий при беге.
+// RunningSpentCalories возвращает количество потраченных калорий при беге.
 //
 // Параметры:
 //
@@ -105,14 +105,14 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	// ваш код здесь
 	speed := meanSpeed(action, duration)
 	speedMS := speed * kmhInMsec
-	walkingCalories := (walkingCaloriesWeightMultiplier*weight + (math.Pow(speedMS, 2)/height)*walkingSpeedHeightMultiplier*weight) * duration * minInH
-	// (0.035*ВесСпортсменаВКг + (СредняяСкоростьВМетрахВСекунду**2/РостВМетрах)*0.029*ВесСпортсменаВКг) * ВремяТренировкиВЧасах * minInH
+	heightInM := height / cmInM
+	walkingCalories := (walkingCaloriesWeightMultiplier*weight + (math.Pow(speedMS, 2)/heightInM)*walkingSpeedHeightMultiplier*weight) * duration * minInH
 	return walkingCalories
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
 const (
-	swimmingCaloriesMeanSpeedShift   = 1.1 // среднее количество сжигаемых колорий при плавании относительно скорости.
+	swimmingCaloriesMeanSpeedShift   = 1.1 // среднее количество сжигаемых калорий при плавании относительно скорости.
 	swimmingCaloriesWeightMultiplier = 2   // множитель веса при плавании.
 )
 
